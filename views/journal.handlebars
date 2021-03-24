@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-auto">
+    <h2>Welcome, {{name}}!</h2>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-md-6">
+    <h3>Create a New Post</h3>
+
+    <form class="form new-journal-form">
+      <div class="form-group">
+        <label for="journal-title">Title:</label>
+        <input class="form-input" type="text" id="journal-title" name="journal-title" />
+      </div>
+      
+      <div class="form-group">
+        <label for="journal-entry">Entry:</label>
+        <textarea class="form-input" id="journal-entry" name="journal-entry"></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create</button>
+      </div>
+    </form>
+  </div>
+
+  {{#if journal.length}}
+  <div class="col-md-6 journal-entries">
+    <h3>Current Entries:</h3>
+
+    {{#each journal as |journal|}}
+    <div class="row mb-2">
+      <div class="col-md-8">
+        <h4><a href="/journal/{{journal.id}}">{{journal.title}}</a></h4>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-sm btn-danger" data-id="{{journal.id}}">DELETE</button>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</div>
+
+<script src="./js/journal.js"></script>

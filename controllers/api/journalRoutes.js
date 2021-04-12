@@ -12,7 +12,7 @@ router.get("/:id", async (req, res) => {
         { model: User, attributes: ["name"] },
         {
           model: Comments,
-          attributes: ["id", "entry", "user_id", "blog_id", "date_created"],
+          attributes: ["id", "entry", "user_id", "journal_id", "date_created"],
           include: {
             model: User,
             attributes: ["name"],
@@ -49,7 +49,7 @@ router.post('/:id', async (req, res) => {
     res.status(400).json(err);
   }
 })
-
+//update journal
 router.post("/", async (req, res) => {
   try {
     const newJournal = await Journal.create({
@@ -68,7 +68,6 @@ router.delete("/:id", async (req, res) => {
     const journalData = await Journal.destroy({
       where: {
         id: req.params.id,
-        user_id: req.session.user_id,
       },
     });
 
